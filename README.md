@@ -1,4 +1,4 @@
-# Warehouse-Management-System
+# Warehouse Management System
 The goal of the Warehouse Management System (WMS) project is to provide a comprehensive and streamlined solution for managing the day-to-day operations of a warehouse. The WMS will be used by warehouse workers to perform tasks such as searching for merchandise, stocking shelves, receiving shipments, and taking inventory. This system will also be used by Warehouse Enterprise workers who are responsible for managing the business.
 
 The WMS application will utilize JavaScript on the front-end and DBMS on the back-end to allow for efficient data retrieval and processing. The Docker container will be used to store the data, and the GET, PUT, PATCH, and DELETE functions will be used to access the data through the Postgres, and API swagger editors. This data can then be easily accessed and manipulated using the Postman application.
