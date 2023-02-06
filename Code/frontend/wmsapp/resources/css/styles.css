@@ -1,0 +1,25 @@
+ body {
+  background-image: url("../img/pexels-elevate-1267338.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+#neutralinoapp {
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+#neutralinoapp h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+   align-content: center;
+}
+
+#neutralinoapp > div {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+ 

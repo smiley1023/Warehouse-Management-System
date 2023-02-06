@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "1af9dd64-2d10-450b-938f-c9c00e810ec5",
+		"name": "DB Proj",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ReplenishmentOrder",
+			"item": [
+				{
+					"name": "ReplenishmentOrder - Creation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoid21zX3VzZXIifQ.rIjbyGUhUrJQ-mBCR_7Q5Q-WIDio_PpzRHSbWzjJYQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n  \n   \"CreatedByid\": 400,\n   \"ASNItemid\": 2,\n   \"Quantity\": 3,\n   \"ETADate\": \"2021-11-30\",\n   \"CarrierName\": \"FedEx\",\n   \"AirWayBillNumber\": \"9999 9999 9999\",\n   \"Status\": \"NotReceived\",\n   \"ReceivedByid\": null,\n   \"ReceiptDate\": null,\n   \"PutAwayAisle\": \"\",\n   \"PutAwayBin\": \"\"\n }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ReplenishmentOrder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ReplenishmentOrder"
+							],
+							"query": [
+								{
+									"key": "Vendorid",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReplenishmentOrder - Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/ReplenishmentOrder?ASNorderid=eq.19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ReplenishmentOrder"
+							],
+							"query": [
+								{
+									"key": "ASNorderid",
+									"value": "eq.19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReplenishmentOrder - Receiving",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoid21zX3VzZXIifQ.rIjbyGUhUrJQ-mBCR_7Q5Q-WIDio_PpzRHSbWzjJYQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n \n        \"CreatedByid\": 400,\n        \"ASNItemid\": 2,\n        \"Quantity\": 3,\n        \"ETADate\": \"2021-12-01T00:00:00\",\n        \"CarrierName\": \"FedEx\",\n        \"AirWayBillNumber\": \"9999 9999 9999\",\n        \"Status\": \"Received\",\n        \"ReceivedByid\": 4,\n        \"ReceiptDate\": \"2021-12-01T00:00:00\",\n        \"PutAwayAisle\": \"\",\n        \"PutAwayBin\": \"\"\n }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ReplenishmentOrder?ASNorderid=eq.19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ReplenishmentOrder"
+							],
+							"query": [
+								{
+									"key": "Vendorid",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "ASNorderid",
+									"value": "eq.19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReplenishmentOrder - PutAway",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoid21zX3VzZXIifQ.rIjbyGUhUrJQ-mBCR_7Q5Q-WIDio_PpzRHSbWzjJYQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n \n        \"CreatedByid\": 400,\n        \"ASNItemid\": 2,\n        \"Quantity\": 3,\n        \"ETADate\": \"2021-12-01T00:00:00\",\n        \"CarrierName\": \"FedEx\",\n        \"AirWayBillNumber\": \"9999 9999 9999\",\n        \"Status\": \"PutAway\",\n        \"ReceivedByid\": 4,\n        \"ReceiptDate\": \"2021-12-01T00:00:00\",\n        \"PutAwayAisle\": \"A\",\n        \"PutAwayBin\": \"1\"\n }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ReplenishmentOrder?ASNorderid=eq.19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ReplenishmentOrder"
+							],
+							"query": [
+								{
+									"key": "Vendorid",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "ASNorderid",
+									"value": "eq.19"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ShippingOrder",
+			"item": [
+				{
+					"name": "ShippingOrder - Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/ShippingOrder?ShippingOrderid=eq.1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ShippingOrder"
+							],
+							"query": [
+								{
+									"key": "ShippingOrderid",
+									"value": "eq.1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShippingOrder - Creation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoid21zX3VzZXIifQ.rIjbyGUhUrJQ-mBCR_7Q5Q-WIDio_PpzRHSbWzjJYQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Prefer",
+								"value": "return=representation",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n  \n   \"CreatedByid\": 400,\n   \"ASNItemid\": 2,\n   \"Quantity\": 3,\n   \"ETADate\": \"2021-11-30\",\n   \"CarrierName\": \"FedEx\",\n   \"AirWayBillNumber\": \"9999 9999 9999\",\n   \"Status\": \"NotReceived\",\n   \"ReceivedByid\": null,\n   \"ReceiptDate\": null,\n   \"PutAwayAisle\": \"\",\n   \"PutAwayBin\": \"\"\n }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ShippingOrder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ShippingOrder"
+							],
+							"query": [
+								{
+									"key": "Vendorid",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

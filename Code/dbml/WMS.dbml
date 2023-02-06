@@ -1,0 +1,217 @@
+
+Table Supplier
+{
+  Vendorid int [pk,increment]
+  FirstName varchar [not null]
+  LastName varchar [not null]
+  Email varchar
+  Phone varchar
+  StreetAddress1 varchar [not null]
+  StreetAdress2 varchar [not null]
+  City varchar [not null]
+  State varchar [not null]
+  Country varchar [not null]
+  Zip_PostalCode varchar [not null]
+  company varchar [not null,unique]
+}
+
+
+
+
+Table ReplenishmentOrder   {
+
+  ASNorderid int [pk,increment]
+  CreatedByid int [not null]
+  ASNItemid int [not null]
+  Quantity int [not null]
+  ETADate timestamp
+  CarrierName varchar
+  AirWayBillNumber varchar
+  Status varchar [not null]
+  ReceivedByid int  
+  ReceiptDate timestamp 
+  PutAwayAisle varchar 
+  PutAwayBin varchar 
+
+}
+
+ 
+ 
+  
+Table Operator {
+  
+  Employeeid int [pk,increment]
+  FirstName varchar [not null]
+  LastName varchar [not null]
+  Wages decimal
+  Type varchar
+  Email varchar
+  Phone varchar
+  StreetAddress1 varchar [not null]
+  StreetAddress2 varchar [not null]
+  City varchar [not null]
+  State varchar [not null]
+  Country varchar [not null]
+  Zip_PostalCode varchar [not null]
+  
+  
+}
+
+ 
+
+Table Stock   {
+  Itemid int [pk,increment]
+  PartNumber varchar  [not null,unique]
+  PartDescription varchar
+  active boolean [not null]
+  ItemCost decimal 
+  ItemCurrencyCode varchar [default: 'USD']
+  Length decimal
+  Width decimal
+  Height decimal
+  DimensionUOM varchar [default: 'IN']
+  Weight decimal
+  WeightUOM varchar [default: 'LB']
+  Quantity int
+  
+}
+
+
+Table EndUser
+{
+  Userid int [pk,increment]
+  FirstName varchar [not null]
+  LastName varchar [not null]
+  Email varchar
+  Phone varchar
+  StreetAddress1 varchar [not null]
+  StreetAddress2 varchar [not null]
+  City varchar [not null]
+  State varchar [not null]
+  Country varchar [not null]
+  Zip_PostalCode varchar [not null]
+}
+
+Table Partner
+{
+  Partnerid int [pk,increment]
+  Partnername varchar [not null]
+  Email varchar [not null]
+  Phone varchar [not null]
+  StreetAddress1 varchar [not null]
+  StreetAddress2 varchar [not null]
+  City varchar [not null]
+  State varchar [not null]
+  Country varchar [not null]
+  Zip_PostalCode varchar [not null]
+}
+
+Table Carrier 
+
+{
+  Carrierid int [pk,increment]
+  name varchar
+  SLA varchar
+  FirstName varchar [not null]
+  LastName varchar [not null]
+  Email varchar
+  Phone varchar [not null]
+  StreetAddress1 varchar [not null]
+  StreetAddress2 varchar [not null]
+  City varchar [not null]
+  State varchar [not null]
+  Country varchar [not null]
+  Zip_PostalCode varchar [not null]
+} 
+  
+   
+Table ShippingOrder   {
+
+  ShippingOrderid int [pk,increment]
+  SLA varchar
+  Status varchar [not null]
+  ShipToUserid int [not null] 
+  ShippingItemid int [not null]
+  Quantity int [not null]
+  ETADate timestamp
+  CreatedByid int [not null]
+  FulfilledBy int 
+  FulfilledDate timestamp  
+  Packing varchar  
+  PackageLength decimal
+  PackageWidth decimal
+  PackageHeight decimal
+  PackageDimensionUOM varchar [default: 'IN']
+  PackageWeight decimal
+  PackageWeightUOM varchar [default: 'LB']
+  Carrierid int 
+  CarrierSLA varchar
+  AWB varchar 
+  RAWB varchar
+ 
+}
+
+   
+//[note: ab]
+//enum ASNOrderStatus {
+//  NotReceived
+//  Received
+//  PutAway
+//}
+
+//enum OperatorType {
+//  FullTime
+//  PartTime
+//  Seasonal
+//} 
+
+//enum ShippingOrderStatus {
+//  New
+//  Reserved
+//  Picked
+//  Packed
+//  Shipped
+//  POD
+//  
+//}
+
+ 
+
+//enum SLAType
+//{
+//  SBD_Air
+//  NBD_Priority
+//  2DAY_Air_Saver
+//  Ground
+//}
+
+ 
+
+//enum PackageType
+//{
+  
+//  Box
+//  Carton
+//  Palette
+//  Bag
+//}
+
+
+
+Ref :  Supplier.Vendorid < ReplenishmentOrder.CreatedByid
+
+Ref : ReplenishmentOrder.ASNItemid > Stock.Itemid 
+ 
+Ref:  "Operator"."Employeeid" < "ReplenishmentOrder"."ReceivedByid"
+
+Ref: "EndUser"."Userid" < "ShippingOrder"."ShipToUserid"
+
+
+
+Ref: "ShippingOrder"."CreatedByid" > "Partner"."Partnerid"
+
+Ref: "ShippingOrder"."Carrierid" > "Carrier"."Carrierid"
+
+Ref: "ShippingOrder"."ShippingItemid" > "Stock"."Itemid"
+
+Ref: "ShippingOrder"."FulfilledBy" > "Operator"."Employeeid"
